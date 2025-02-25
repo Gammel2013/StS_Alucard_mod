@@ -1,4 +1,4 @@
-package leatestmod.util;
+package alucardmod.util;
 
 public class KeywordInfo {
     public String ID = "";

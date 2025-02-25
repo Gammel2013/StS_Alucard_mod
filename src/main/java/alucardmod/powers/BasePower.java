@@ -1,7 +1,7 @@
-package leatestmod.powers;
+package alucardmod.powers;
 
-import leatestmod.util.GeneralUtils;
-import leatestmod.util.TextureLoader;
+import alucardmod.util.GeneralUtils;
+import alucardmod.util.TextureLoader;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -21,8 +21,8 @@ public abstract class BasePower extends AbstractPower {
     protected AbstractCreature source;
     protected String[] DESCRIPTIONS;
 
-    //Will not display if at 0. You can override renderAmount to render it however you want.
-    //amount2 will not stack like the normal amount variable when stacking a power.
+    // Will not display if at 0. You can override renderAmount to render it however you want.
+    // amount2 will not stack like the normal amount variable when stacking a power.
     public int amount2 = 0;
     protected Color redColor2 = Color.RED.cpy();
     protected Color greenColor2 = Color.GREEN.cpy();

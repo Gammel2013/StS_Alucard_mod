@@ -1,11 +1,11 @@
-package leatestmod.cards;
+package alucardmod.cards;
 
 import basemod.BaseMod;
 import basemod.abstracts.CustomCard;
 import basemod.abstracts.DynamicVariable;
-import leatestmod.LeaTestMod;
-import leatestmod.util.CardStats;
-import leatestmod.util.TriFunction;
+import alucardmod.AlucardMod;
+import alucardmod.util.CardStats;
+import alucardmod.util.TriFunction;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -18,14 +18,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import static leatestmod.util.GeneralUtils.removePrefix;
-import static leatestmod.util.TextureLoader.getCardTextureString;
+import static alucardmod.util.GeneralUtils.removePrefix;
+import static alucardmod.util.TextureLoader.getCardTextureString;
 
 
 public abstract class BaseCard extends CustomCard {
     final private static Map<String, DynamicVariable> customVars = new HashMap<>();
 
-    protected static String makeID(String name) { return LeaTestMod.makeID(name); }
+    protected static String makeID(String name) { return AlucardMod.makeID(name); }
     protected CardStrings cardStrings;
 
     protected boolean upgradesDescription;
@@ -53,6 +53,8 @@ public abstract class BaseCard extends CustomCard {
     protected boolean upgRetain = false;
 
     final protected Map<String, LocalVarInfo> cardVariables = new HashMap<>();
+
+    boolean inCalc = false;
 
     public BaseCard(String ID, CardStats info) {
         this(ID, info, getCardTextureString(removePrefix(ID), info.cardType));
@@ -86,15 +88,17 @@ public abstract class BaseCard extends CustomCard {
     private static String getName(String ID) {
         return CardCrawlGame.languagePack.getCardStrings(ID).NAME;
     }
+
     private static String getInitialDescription(String ID) {
         return CardCrawlGame.languagePack.getCardStrings(ID).DESCRIPTION;
     }
 
-    //Methods meant for constructor use
+    // Methods meant for constructor use
     protected final void setDamage(int damage)
     {
         this.setDamage(damage, 0);
     }
+
     protected final void setDamage(int damage, int damageUpgrade)
     {
         this.baseDamage = this.damage = damage;
@@ -109,6 +113,7 @@ public abstract class BaseCard extends CustomCard {
     {
         this.setBlock(block, 0);
     }
+
     protected final void setBlock(int block, int blockUpgrade)
     {
         this.baseBlock = this.block = block;
@@ -123,6 +128,7 @@ public abstract class BaseCard extends CustomCard {
     {
         this.setMagic(magic, 0);
     }
+
     protected final void setMagic(int magic, int magicUpgrade)
     {
         this.baseMagicNumber = this.magicNumber = magic;
@@ -134,10 +140,11 @@ public abstract class BaseCard extends CustomCard {
     }
 
 
-
-    protected final void setCustomVar(String key, int base) {
+    protected final void setCustomVar(String key, int base)
+    {
         this.setCustomVar(key, base, 0);
     }
+
     protected final void setCustomVar(String key, int base, int upgrade) {
         setCustomVarValue(key, base, upgrade);
 
@@ -154,10 +161,13 @@ public abstract class BaseCard extends CustomCard {
         BLOCK,
         MAGIC
     }
+
     protected final void setCustomVar(String key, VariableType type, int base) {
         setCustomVar(key, type, base, 0);
     }
-    protected final void setCustomVar(String key, VariableType type, int base, int upgrade) {
+
+    protected final void setCustomVar(String key, VariableType type, int base, int upgrade)
+    {
         setCustomVarValue(key, base, upgrade);
 
         switch (type) {
@@ -176,16 +186,24 @@ public abstract class BaseCard extends CustomCard {
             initializeDescription();
         }
     }
-    protected final void setCustomVar(String key, VariableType type, int base, TriFunction<BaseCard, AbstractMonster, Integer, Integer> preCalc) {
+
+    protected final void setCustomVar(String key, VariableType type, int base, TriFunction<BaseCard, AbstractMonster, Integer, Integer> preCalc)
+    {
         setCustomVar(key, type, base, 0, preCalc);
     }
-    protected final void setCustomVar(String key, VariableType type, int base, int upgrade, TriFunction<BaseCard, AbstractMonster, Integer, Integer> preCalc) {
+
+    protected final void setCustomVar(String key, VariableType type, int base, int upgrade, TriFunction<BaseCard, AbstractMonster, Integer, Integer> preCalc)
+    {
         setCustomVar(key, type, base, upgrade, preCalc, LocalVarInfo::noCalc);
     }
-    protected final void setCustomVar(String key, VariableType type, int base, TriFunction<BaseCard, AbstractMonster, Integer, Integer> preCalc, TriFunction<BaseCard, AbstractMonster, Integer, Integer> postCalc) {
+
+    protected final void setCustomVar(String key, VariableType type, int base, TriFunction<BaseCard, AbstractMonster, Integer, Integer> preCalc, TriFunction<BaseCard, AbstractMonster, Integer, Integer> postCalc)
+    {
         setCustomVar(key, type, base, 0, preCalc, postCalc);
     }
-    protected final void setCustomVar(String key, VariableType type, int base, int upgrade, TriFunction<BaseCard, AbstractMonster, Integer, Integer> preCalc, TriFunction<BaseCard, AbstractMonster, Integer, Integer> postCalc) {
+
+    protected final void setCustomVar(String key, VariableType type, int base, int upgrade, TriFunction<BaseCard, AbstractMonster, Integer, Integer> preCalc, TriFunction<BaseCard, AbstractMonster, Integer, Integer> postCalc)
+    {
         setCustomVarValue(key, base, upgrade);
 
         switch (type) {
@@ -253,7 +271,8 @@ public abstract class BaseCard extends CustomCard {
         }
     }
 
-    private void setCustomVarValue(String key, int base, int upg) {
+    private void setCustomVarValue(String key, int base, int upg)
+    {
         cardVariables.compute(key, (k, old)->{
             if (old == null) {
                 return new LocalVarInfo(base, upg);
@@ -266,13 +285,18 @@ public abstract class BaseCard extends CustomCard {
         });
     }
 
-    protected final void colorCustomVar(String key, Color normalColor) {
+    protected final void colorCustomVar(String key, Color normalColor)
+    {
         colorCustomVar(key, normalColor, Settings.GREEN_TEXT_COLOR, Settings.RED_TEXT_COLOR, Settings.GREEN_TEXT_COLOR);
     }
-    protected final void colorCustomVar(String key, Color normalColor, Color increasedColor, Color decreasedColor) {
+
+    protected final void colorCustomVar(String key, Color normalColor, Color increasedColor, Color decreasedColor)
+    {
         colorCustomVar(key, normalColor, increasedColor, decreasedColor, increasedColor);
     }
-    protected final void colorCustomVar(String key, Color normalColor, Color increasedColor, Color decreasedColor, Color upgradedColor) {
+
+    protected final void colorCustomVar(String key, Color normalColor, Color increasedColor, Color decreasedColor, Color upgradedColor)
+    {
         LocalVarInfo var = getCustomVar(key);
         if (var == null) {
             throw new IllegalArgumentException("Attempted to set color of variable that hasn't been registered.");
@@ -284,12 +308,13 @@ public abstract class BaseCard extends CustomCard {
         var.upgradedColor = upgradedColor;
     }
 
-
-    private LocalVarInfo getCustomVar(String key) {
+    private LocalVarInfo getCustomVar(String key)
+    {
         return cardVariables.get(key);
     }
 
-    protected void calculateVarAsDamage(String key) {
+    protected void calculateVarAsDamage(String key)
+    {
         setVarCalculation(key, (c, m, base)->{
             boolean wasMultiDamage = c.isMultiDamage;
             c.isMultiDamage = false;
@@ -311,7 +336,9 @@ public abstract class BaseCard extends CustomCard {
             return result;
         });
     }
-    protected void calculateVarAsBlock(String key) {
+
+    protected void calculateVarAsBlock(String key)
+    {
         setVarCalculation(key, (c, m, base)->{
             int origBase = c.baseBlock, origVal = c.block;
 
@@ -327,69 +354,98 @@ public abstract class BaseCard extends CustomCard {
             return result;
         });
     }
-    protected void setVarCalculation(String key, TriFunction<BaseCard, AbstractMonster, Integer, Integer> calculation) {
+
+    protected void setVarCalculation(String key, TriFunction<BaseCard, AbstractMonster, Integer, Integer> calculation)
+    {
         cardVariables.get(key).calculation = calculation;
     }
 
-    public int customVarBase(String key) {
+    public int customVarBase(String key)
+    {
         LocalVarInfo var = cardVariables.get(key);
         if (var == null)
             return -1;
         return var.base;
     }
-    public int customVar(String key) {
+
+    public int customVar(String key)
+    {
         LocalVarInfo var = cardVariables == null ? null : cardVariables.get(key); //Prevents crashing when used with dynamic text
         if (var == null)
             return -1;
         return var.value;
     }
-    public int[] customVarMulti(String key) {
+
+    public int[] customVarMulti(String key)
+    {
         LocalVarInfo var = cardVariables.get(key);
         if (var == null)
             return null;
         return var.aoeValue;
     }
-    public boolean isCustomVarModified(String key) {
+
+    public boolean isCustomVarModified(String key)
+    {
         LocalVarInfo var = cardVariables.get(key);
         if (var == null)
             return false;
         return var.isModified();
     }
-    public boolean customVarUpgraded(String key) {
+
+    public boolean customVarUpgraded(String key)
+    {
         LocalVarInfo var = cardVariables.get(key);
         if (var == null)
             return false;
         return var.upgraded;
     }
 
-
     protected final void setCostUpgrade(int costUpgrade)
     {
         this.costUpgrade = costUpgrade;
         this.upgradeCost = true;
     }
-    protected final void setExhaust(boolean exhaust) { this.setExhaust(exhaust, exhaust); }
-    protected final void setEthereal(boolean ethereal) { this.setEthereal(ethereal, ethereal); }
-    protected final void setInnate(boolean innate) {this.setInnate(innate, innate); }
-    protected final void setSelfRetain(boolean retain) {this.setSelfRetain(retain, retain); }
+
+    protected final void setExhaust(boolean exhaust)
+    {
+        this.setExhaust(exhaust, exhaust);
+    }
+
+    protected final void setEthereal(boolean ethereal)
+    {
+        this.setEthereal(ethereal, ethereal);
+    }
+
+    protected final void setInnate(boolean innate) {
+        this.setInnate(innate, innate);
+    }
+
+    protected final void setSelfRetain(boolean retain)
+    {
+        this.setSelfRetain(retain, retain);
+    }
+
     protected final void setExhaust(boolean baseExhaust, boolean upgExhaust)
     {
         this.baseExhaust = baseExhaust;
         this.upgExhaust = upgExhaust;
         this.exhaust = baseExhaust;
     }
+
     protected final void setEthereal(boolean baseEthereal, boolean upgEthereal)
     {
         this.baseEthereal = baseEthereal;
         this.upgEthereal = upgEthereal;
         this.isEthereal = baseEthereal;
     }
+
     protected void setInnate(boolean baseInnate, boolean upgInnate)
     {
         this.baseInnate = baseInnate;
         this.upgInnate = upgInnate;
         this.isInnate = baseInnate;
     }
+
     protected void setSelfRetain(boolean baseRetain, boolean upgRetain)
     {
         this.baseRetain = baseRetain;
@@ -399,7 +455,8 @@ public abstract class BaseCard extends CustomCard {
 
 
     @Override
-    public AbstractCard makeStatEquivalentCopy() {
+    public AbstractCard makeStatEquivalentCopy()
+    {
         AbstractCard card = super.makeStatEquivalentCopy();
 
         if (card instanceof BaseCard)
@@ -457,7 +514,7 @@ public abstract class BaseCard extends CustomCard {
             {
                 if (cardStrings.UPGRADE_DESCRIPTION == null)
                 {
-                    LeaTestMod.logger.error("Card " + cardID + " upgrades description and has null upgrade description.");
+                    AlucardMod.logger.error("Card " + cardID + " upgrades description and has null upgrade description.");
                 }
                 else
                 {
@@ -512,9 +569,9 @@ public abstract class BaseCard extends CustomCard {
         }
     }
 
-    boolean inCalc = false;
     @Override
-    public void applyPowers() {
+    public void applyPowers()
+    {
         if (!inCalc) {
             inCalc = true;
             for (LocalVarInfo var : cardVariables.values()) {
@@ -540,7 +597,8 @@ public abstract class BaseCard extends CustomCard {
     }
 
     @Override
-    public void calculateCardDamage(AbstractMonster m) {
+    public void calculateCardDamage(AbstractMonster m)
+    {
         if (!inCalc) {
             inCalc = true;
             for (LocalVarInfo var : cardVariables.values()) {
@@ -565,7 +623,8 @@ public abstract class BaseCard extends CustomCard {
     }
 
     @Override
-    public void resetAttributes() {
+    public void resetAttributes()
+    {
         super.resetAttributes();
 
         for (LocalVarInfo var : cardVariables.values()) {
@@ -573,7 +632,8 @@ public abstract class BaseCard extends CustomCard {
         }
     }
 
-    private static class QuickDynamicVariable extends DynamicVariable {
+    private static class QuickDynamicVariable extends DynamicVariable
+    {
         final String localKey, key;
 
         private BaseCard current = null;
@@ -650,7 +710,8 @@ public abstract class BaseCard extends CustomCard {
         }
     }
 
-    protected static class LocalVarInfo {
+    protected static class LocalVarInfo
+    {
         int base, value, upgrade;
         int[] aoeValue = null;
         boolean upgraded = false;

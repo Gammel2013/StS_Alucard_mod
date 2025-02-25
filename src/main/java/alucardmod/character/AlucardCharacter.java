@@ -1,4 +1,4 @@
-package leatestmod.character;
+package alucardmod.character;
 
 import basemod.BaseMod;
 import basemod.abstracts.CustomEnergyOrb;
@@ -25,10 +25,10 @@ import com.megacrit.cardcrawl.screens.CharSelectInfo;
 
 import java.util.ArrayList;
 
-import static leatestmod.LeaTestMod.characterPath;
-import static leatestmod.LeaTestMod.makeID;
+import static alucardmod.AlucardMod.characterPath;
+import static alucardmod.AlucardMod.makeID;
 
-public class MyCharacter extends CustomPlayer {
+public class AlucardCharacter extends CustomPlayer {
     // Stats
     public static final int ENERGY_PER_TURN = 3;
     public static final int MAX_HP = 70;
@@ -37,7 +37,8 @@ public class MyCharacter extends CustomPlayer {
     public static final int ORB_SLOTS = 0;
 
     // Strings
-    private static final String ID = makeID("CharacterID"); //This should match whatever you have in the CharacterStrings.json file
+    // This should match whatever you have in the CharacterStrings.json file
+    private static final String ID = makeID("Alucard");
     private static String[] getNames() { return CardCrawlGame.languagePack.getCharacterString(ID).NAMES; }
     private static String[] getText() { return CardCrawlGame.languagePack.getCharacterString(ID).TEXT; }
 
@@ -91,7 +92,7 @@ public class MyCharacter extends CustomPlayer {
 
         public static void registerCharacter() {
             BaseMod.addCharacter(
-                    new MyCharacter(),
+                    new AlucardCharacter(),
                     CHAR_SELECT_BUTTON,
                     CHAR_SELECT_PORTRAIT
             );
@@ -134,7 +135,7 @@ public class MyCharacter extends CustomPlayer {
 
     // Actual character class code below this point
 
-    public MyCharacter() {
+    public AlucardCharacter() {
         super(
                 getNames()[0],
                 Meta.YOUR_CHARACTER,
@@ -296,6 +297,6 @@ public class MyCharacter extends CustomPlayer {
     @Override
     public AbstractPlayer newInstance() {
         //Makes a new instance of your character class.
-        return new MyCharacter();
+        return new AlucardCharacter();
     }
 }

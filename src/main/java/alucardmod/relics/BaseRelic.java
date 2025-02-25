@@ -1,22 +1,22 @@
-package leatestmod.relics;
+package alucardmod.relics;
 
 import basemod.abstracts.CustomRelic;
 import basemod.helpers.RelicType;
-import leatestmod.util.GeneralUtils;
-import leatestmod.util.TextureLoader;
+import alucardmod.util.GeneralUtils;
+import alucardmod.util.TextureLoader;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.RelicStrings;
 
-import static leatestmod.LeaTestMod.relicPath;
+import static alucardmod.AlucardMod.relicPath;
 
 public abstract class BaseRelic extends CustomRelic {
     public AbstractCard.CardColor pool = null;
     public RelicType relicType = RelicType.SHARED;
     protected String imageName;
 
-    //for character specific relics
+    // For character specific relics
     public BaseRelic(String id, String imageName, AbstractCard.CardColor pool, RelicTier tier, LandingSound sfx) {
         this(id, imageName, tier, sfx);
 
@@ -27,8 +27,8 @@ public abstract class BaseRelic extends CustomRelic {
         this(id, GeneralUtils.removePrefix(id), tier, sfx);
     }
 
-    //To use a basegame relic image, just pass in the imagename used by a basegame relic instead of the ID.
-    //eg. "calendar.png"
+    // To use a basegame relic image, just pass in the imagename used by a basegame relic instead of the ID.
+    // eg. "calendar.png"
     public BaseRelic(String id, String imageName, RelicTier tier, LandingSound sfx) {
         super(testStrings(id), notPng(imageName) ? "" : imageName, tier, sfx);
 
@@ -65,7 +65,8 @@ public abstract class BaseRelic extends CustomRelic {
     }
 
     private void setPool(AbstractCard.CardColor pool) {
-        switch (pool) { //Basegame pools are handled differently
+        // Basegame pools are handled differently
+        switch (pool) {
             case RED:
                 relicType = RelicType.RED;
                 break;

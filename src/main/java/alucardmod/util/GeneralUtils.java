@@ -1,4 +1,4 @@
-package leatestmod.util;
+package alucardmod.util;
 
 public class GeneralUtils {
     public static String arrToString(Object[] arr) {

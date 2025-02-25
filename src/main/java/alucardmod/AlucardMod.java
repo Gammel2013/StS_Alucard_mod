@@ -1,14 +1,14 @@
-package leatestmod;
+package alucardmod;
 
 import basemod.BaseMod;
 import basemod.interfaces.EditCharactersSubscriber;
 import basemod.interfaces.EditKeywordsSubscriber;
 import basemod.interfaces.EditStringsSubscriber;
 import basemod.interfaces.PostInitializeSubscriber;
-import leatestmod.character.MyCharacter;
-import leatestmod.util.GeneralUtils;
-import leatestmod.util.KeywordInfo;
-import leatestmod.util.TextureLoader;
+import alucardmod.character.AlucardCharacter;
+import alucardmod.util.GeneralUtils;
+import alucardmod.util.KeywordInfo;
+import alucardmod.util.TextureLoader;
 import com.badlogic.gdx.Files;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.backends.lwjgl.LwjglFileHandle;
@@ -30,7 +30,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 @SpireInitializer
-public class LeaTestMod implements
+public class AlucardMod implements
         EditStringsSubscriber,
         EditKeywordsSubscriber,
         PostInitializeSubscriber,
@@ -59,12 +59,12 @@ public class LeaTestMod implements
 
     // This will be called by ModTheSpire because of the @SpireInitializer annotation at the top of the class.
     public static void initialize() {
-        new LeaTestMod();
+        new AlucardMod();
 
-        MyCharacter.Meta.registerColor();
+        AlucardCharacter.Meta.registerColor();
     }
 
-    public LeaTestMod() {
+    public AlucardMod() {
         // This will make BaseMod trigger all the subscribers at their appropriate times.
         BaseMod.subscribe(this);
         logger.info(modID + " subscribed to BaseMod.");
@@ -191,7 +191,7 @@ public class LeaTestMod implements
      * Checks the expected resources path based on the package name.
      */
     private static String checkResourcesPath() {
-        String name = LeaTestMod.class.getName(); //getPackage can be iffy with patching, so class name is used instead.
+        String name = AlucardMod.class.getName(); //getPackage can be iffy with patching, so class name is used instead.
         int separator = name.indexOf('.');
         if (separator > 0)
             name = name.substring(0, separator);
@@ -202,7 +202,7 @@ public class LeaTestMod implements
             throw new RuntimeException("\n\tFailed to find resources folder; expected it to be named \"" + name + "\"." +
                     " Either make sure the folder under resources has the same name as your mod's package, or change the line\n" +
                     "\t\"private static final String resourcesFolder = checkResourcesPath();\"\n" +
-                    "\tat the top of the " + LeaTestMod.class.getSimpleName() + " java file.");
+                    "\tat the top of the " + AlucardMod.class.getSimpleName() + " java file.");
         }
         if (!resources.child("images").exists()) {
             throw new RuntimeException("\n\tFailed to find the 'images' folder in the mod's 'resources/" + name + "' folder; Make sure the " +
@@ -225,7 +225,7 @@ public class LeaTestMod implements
             if (annotationDB == null)
                 return false;
             Set<String> initializers = annotationDB.getAnnotationIndex().getOrDefault(SpireInitializer.class.getName(), Collections.emptySet());
-            return initializers.contains(LeaTestMod.class.getName());
+            return initializers.contains(AlucardMod.class.getName());
         }).findFirst();
         if (infos.isPresent()) {
             info = infos.get();
@@ -238,6 +238,6 @@ public class LeaTestMod implements
 
     @Override
     public void receiveEditCharacters() {
-        MyCharacter.Meta.registerCharacter();
+        AlucardCharacter.Meta.registerCharacter();
     }
 }

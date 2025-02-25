@@ -1,4 +1,4 @@
-package leatestmod.util;
+package alucardmod.util;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 
