@@ -1,4 +1,4 @@
-package basicmod.util;
+package leatestmod.util;
 
 public class GeneralUtils {
     public static String arrToString(Object[] arr) {
