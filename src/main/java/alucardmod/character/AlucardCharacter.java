@@ -1,5 +1,10 @@
 package alucardmod.character;
 
+import alucardmod.cards.Bite;
+import alucardmod.cards.Defend;
+import alucardmod.cards.Outspeed;
+import alucardmod.cards.Strike;
+import alucardmod.relics.FamiliarFaces;
 import basemod.BaseMod;
 import basemod.abstracts.CustomEnergyOrb;
 import basemod.abstracts.CustomPlayer;
@@ -10,9 +15,6 @@ import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.modthespire.lib.SpireEnum;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.blue.Defend_Blue;
-import com.megacrit.cardcrawl.cards.green.Neutralize;
-import com.megacrit.cardcrawl.cards.red.Strike_Red;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.EnergyManager;
@@ -20,7 +22,6 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
-import com.megacrit.cardcrawl.relics.BurningBlood;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 
 import java.util.ArrayList;
@@ -47,12 +48,12 @@ public class AlucardCharacter extends CustomPlayer {
 
         // These are used to identify your character, as well as your character's card color.
         @SpireEnum
-        public static PlayerClass YOUR_CHARACTER;
+        public static PlayerClass AlucardClass;
 
         // These two MUST match. Change it to something unique for your character.
-        @SpireEnum(name = "CHARACTER_GRAY_COLOR")
+        @SpireEnum(name = "ALUCARD_GRAY_COLOR")
         public static AbstractCard.CardColor CARD_COLOR;
-        @SpireEnum(name = "CHARACTER_GRAY_COLOR") @SuppressWarnings("unused")
+        @SpireEnum(name = "ALUCARD_GRAY_COLOR") @SuppressWarnings("unused")
         public static CardLibrary.LibraryType LIBRARY_COLOR;
 
         // Character select images
@@ -70,7 +71,8 @@ public class AlucardCharacter extends CustomPlayer {
         private static final String ENERGY_ORB_P = characterPath("cardback/energy_orb_p.png");
         private static final String SMALL_ORB = characterPath("cardback/small_orb.png");
 
-        // This is used to color *some* images, but NOT the actual cards. For that, edit the images in the cardback folder!
+        // This is used to color *some* images, but NOT the actual cards.
+        // For that, edit the images in the cardback folder!
         private static final Color cardColor = new Color(128f/255f, 128f/255f, 128f/255f, 1f);
 
         // Methods that will be used in the main mod file
@@ -132,13 +134,11 @@ public class AlucardCharacter extends CustomPlayer {
             360.0F
     };
 
-
     // Actual character class code below this point
-
     public AlucardCharacter() {
         super(
                 getNames()[0],
-                Meta.YOUR_CHARACTER,
+                Meta.AlucardClass,
                 new CustomEnergyOrb(
                         orbTextures,
                         characterPath("energyorb/vfx.png"),
@@ -174,11 +174,22 @@ public class AlucardCharacter extends CustomPlayer {
         // List of IDs of cards for your starting deck.
         // If you want multiple of the same card, you have to add it multiple times.
         ArrayList<String> retVal = new ArrayList<>();
-        retVal.add(Strike_Red.ID);
-        retVal.add(Strike_Red.ID);
-        retVal.add(Defend_Blue.ID);
-        retVal.add(Defend_Blue.ID);
-        retVal.add(Neutralize.ID);
+
+        retVal.add(Strike.ID);
+        retVal.add(Strike.ID);
+        retVal.add(Strike.ID);
+        retVal.add(Strike.ID);
+        retVal.add(Strike.ID);
+
+        retVal.add(Defend.ID);
+        retVal.add(Defend.ID);
+        retVal.add(Defend.ID);
+        retVal.add(Defend.ID);
+        retVal.add(Defend.ID);
+
+        retVal.add(Outspeed.ID);
+
+        retVal.add(Bite.ID);
 
         return retVal;
     }
@@ -187,7 +198,7 @@ public class AlucardCharacter extends CustomPlayer {
     public ArrayList<String> getStartingRelics() {
         // IDs of starting relics. You can have multiple, but one is recommended.
         ArrayList<String> retVal = new ArrayList<>();
-        retVal.add(BurningBlood.ID);
+        retVal.add(FamiliarFaces.ID);
 
         return retVal;
     }
@@ -196,7 +207,7 @@ public class AlucardCharacter extends CustomPlayer {
     public AbstractCard getStartCardForEvent() {
         // This card is used for the Gremlin card matching game.
         // It should be a non-strike non-defend starter card, but it doesn't have to be.
-        return new Strike_Red();
+        return new Strike();
     }
 
     /*- Below this is methods that you should *probably* adjust, but don't have to. -*/

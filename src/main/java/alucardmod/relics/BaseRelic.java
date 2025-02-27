@@ -1,11 +1,14 @@
 package alucardmod.relics;
 
+import alucardmod.AlucardMod;
 import basemod.abstracts.CustomRelic;
 import basemod.helpers.RelicType;
 import alucardmod.util.GeneralUtils;
 import alucardmod.util.TextureLoader;
+import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.RelicStrings;
 
@@ -15,6 +18,7 @@ public abstract class BaseRelic extends CustomRelic {
     public AbstractCard.CardColor pool = null;
     public RelicType relicType = RelicType.SHARED;
     protected String imageName;
+    protected static String makeID(String name) { return AlucardMod.makeID(name); }
 
     // For character specific relics
     public BaseRelic(String id, String imageName, AbstractCard.CardColor pool, RelicTier tier, LandingSound sfx) {
@@ -102,5 +106,10 @@ public abstract class BaseRelic extends CustomRelic {
 
     private static boolean notPng(String name) {
         return !name.endsWith(".png");
+    }
+
+    protected void show() {
+        flash();
+        addToTop(new RelicAboveCreatureAction(AbstractDungeon.player, this));
     }
 }

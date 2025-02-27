@@ -1,10 +1,10 @@
 package alucardmod;
 
+import alucardmod.cards.BaseCard;
+import alucardmod.relics.BaseRelic;
+import basemod.AutoAdd;
 import basemod.BaseMod;
-import basemod.interfaces.EditCharactersSubscriber;
-import basemod.interfaces.EditKeywordsSubscriber;
-import basemod.interfaces.EditStringsSubscriber;
-import basemod.interfaces.PostInitializeSubscriber;
+import basemod.interfaces.*;
 import alucardmod.character.AlucardCharacter;
 import alucardmod.util.GeneralUtils;
 import alucardmod.util.KeywordInfo;
@@ -22,6 +22,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.localization.*;
+import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.scannotation.AnnotationDB;
@@ -34,7 +35,9 @@ public class AlucardMod implements
         EditStringsSubscriber,
         EditKeywordsSubscriber,
         PostInitializeSubscriber,
-        EditCharactersSubscriber {
+        EditCharactersSubscriber,
+        EditCardsSubscriber,
+        EditRelicsSubscriber {
 
     public static ModInfo info;
 
@@ -113,8 +116,8 @@ public class AlucardMod implements
     }
 
     private void loadLocalization(String lang) {
-        //While this does load every type of localization, most of these files are just outlines so that you can see how they're formatted.
-        //Feel free to comment out/delete any that you don't end up using.
+        // While this does load every type of localization, most of these files are just outlines so that you can see how they're formatted.
+        // Feel free to comment out/delete any that you don't end up using.
         BaseMod.loadCustomStringsFile(CardStrings.class,
                 localizationPath(lang, "CardStrings.json"));
         BaseMod.loadCustomStringsFile(CharacterStrings.class,
@@ -169,7 +172,7 @@ public class AlucardMod implements
         }
     }
 
-    //These methods are used to generate the correct filepaths to various parts of the resources folder.
+    // These methods are used to generate the correct filepaths to various parts of the resources folder.
     public static String localizationPath(String lang, String file) {
         return resourcesFolder + "/localization/" + lang + "/" + file;
     }
@@ -239,5 +242,42 @@ public class AlucardMod implements
     @Override
     public void receiveEditCharacters() {
         AlucardCharacter.Meta.registerCharacter();
+    }
+
+    @Override
+    public void receiveEditCards() {
+        // Add cards in the same package as this class
+        Class<BaseCard> packageFilter = BaseCard.class;
+        new AutoAdd(modID)
+                .packageFilter(packageFilter)
+                .setDefaultSeen(true)
+                .cards();
+    }
+
+    @Override
+    public void receiveEditRelics() {
+        Class<BaseRelic> packageFilter = BaseRelic.class;
+
+        AutoAdd add = new AutoAdd(modID)
+                .packageFilter(packageFilter);
+
+        // Run this code for any classes that extend this class
+        add.any(BaseRelic.class, AlucardMod::addRelics);
+    }
+
+
+    private static void addRelics(AutoAdd.Info info, BaseRelic relic) {
+        if (relic.pool != null) {
+            // Register a custom character specific relic
+            BaseMod.addRelicToCustomPool(relic, relic.pool);
+        } else {
+            // Register a shared or base game character specific relic
+            BaseMod.addRelic(relic, relic.relicType);
+        }
+
+        // If the class is annotated with @AutoAdd.Seen, it will be marked as seen, making it visible in the relic library.
+        // If you want all your relics to be visible by default, just remove this if statement.
+        if (info.seen)
+            UnlockTracker.markRelicAsSeen(relic.relicId);
     }
 }
