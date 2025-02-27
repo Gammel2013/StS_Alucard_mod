@@ -12,6 +12,9 @@ With
 35 skills
 12 powers
 
+General idea or gimmick:
+TODO
+
 Stuff:
 Dash attack (where he gets the redshift after image)
 Sword remote control
@@ -39,7 +42,7 @@ Then later at least 4 of each rarity.
 Attacks (28):
     Starter (2):
         1. Strike
-        2.
+        2. Bite
     Common (11):
         1.
         2.
@@ -73,7 +76,7 @@ Attacks (28):
 Skills (35):
     Starter (2):
         1. Defend
-        2.
+        2. Outspeed
     Common (8):
         1. "Alucard's Shield" which gives block and maybe a dexterity buff
         2. "Please, this isn't a bar fight" which applies "Weak" to an enemy
