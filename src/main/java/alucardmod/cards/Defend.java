@@ -39,33 +39,13 @@ public class Defend extends ActionCard {
     }
 
     @Override
-    int getDamage() {
-        return 0;
-    }
-
-    @Override
-    int getUpgradedDamage() {
-        return 0;
-    }
-
-    @Override
-    int getBlock() {
+    protected int getBlock() {
         return 5;
     }
 
     @Override
-    int getUpgradedBlock() {
+    protected int getUpgradedBlock() {
         return 3;
-    }
-
-    @Override
-    int getMagic() {
-        return 0;
-    }
-
-    @Override
-    int getUpgradedMagic() {
-        return 0;
     }
 
     @Override

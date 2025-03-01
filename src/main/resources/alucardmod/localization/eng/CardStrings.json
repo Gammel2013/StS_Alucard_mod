@@ -11,7 +11,7 @@
   },
   "${modID}:Strike": {
     "NAME": "Strike",
-    "DESCRIPTION": "Deal !D! Damage."
+    "DESCRIPTION": "Deal !D! damage."
   },
   "${modID}:Defend": {
     "NAME": "Defend",
@@ -23,6 +23,14 @@
   },
   "${modID}:Bite": {
     "NAME": "Bite",
-    "DESCRIPTION": "Deal !D! Damage. NL Draw !M! additional cards at the start of your next turn."
+    "DESCRIPTION": "Deal !D! damage. NL Draw !M! additional cards at the start of your next turn."
+  },
+  "${modID}:PleaseThisIsNotABarFight": {
+    "NAME": "Please, This Isn't A Bar Fight",
+    "DESCRIPTION": "Apply !M! Weak. NL Put a *Or Maybe It Is...* into your discard pile. NL Exhaust."
+  },
+  "${modID}:OrMaybeItIs": {
+    "NAME": "Or Maybe It Is...",
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Vulnerable. NL Put a *Please, This Isn't A Bar Fight* into your discard pile. NL Exhaust."
   }
 }

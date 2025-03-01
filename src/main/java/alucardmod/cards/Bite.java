@@ -2,9 +2,6 @@ package alucardmod.cards;
 
 import alucardmod.util.CardStats;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.DrawCardAction;
-import com.megacrit.cardcrawl.cards.green.Predator;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
@@ -38,39 +35,36 @@ public class Bite extends ActionCard {
 
     @Override
     CardTags[] getCardTags() {
-        return new CardTags[] {
-                CardTags.STARTER_STRIKE,
-                CardTags.STRIKE
-        };
+        return new CardTags[] {};
     }
 
     @Override
-    int getDamage() {
+    protected int getDamage() {
         return 10;
     }
 
     @Override
-    int getUpgradedDamage() {
+    protected int getUpgradedDamage() {
         return 4;
     }
 
     @Override
-    int getBlock() {
+    protected int getBlock() {
         return 0;
     }
 
     @Override
-    int getUpgradedBlock() {
+    protected int getUpgradedBlock() {
         return 0;
     }
 
     @Override
-    int getMagic() {
+    protected int getMagic() {
         return 2;
     }
 
     @Override
-    int getUpgradedMagic() {
+    protected int getUpgradedMagic() {
         return 1;
     }
 

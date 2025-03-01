@@ -32,33 +32,18 @@ public class Outspeed extends ActionCard {
     }
 
     @Override
-    int getDamage() {
-        return 0;
-    }
-
-    @Override
-    int getUpgradedDamage() {
-        return 0;
-    }
-
-    @Override
-    int getBlock() {
+    protected int getBlock() {
         return 7;
     }
 
     @Override
-    int getUpgradedBlock() {
+    protected int getUpgradedBlock() {
         return 5;
     }
 
     @Override
-    int getMagic() {
+    protected int getMagic() {
         return 1;
-    }
-
-    @Override
-    int getUpgradedMagic() {
-        return 0;
     }
 
     @Override

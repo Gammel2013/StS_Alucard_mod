@@ -40,33 +40,13 @@ public class Strike extends ActionCard {
     }
 
     @Override
-    int getDamage() {
+    protected int getDamage() {
         return 6;
     }
 
     @Override
-    int getUpgradedDamage() {
+    protected int getUpgradedDamage() {
         return 3;
-    }
-
-    @Override
-    int getBlock() {
-        return 0;
-    }
-
-    @Override
-    int getUpgradedBlock() {
-        return 0;
-    }
-
-    @Override
-    int getMagic() {
-        return 0;
-    }
-
-    @Override
-    int getUpgradedMagic() {
-        return 0;
     }
 
     @Override

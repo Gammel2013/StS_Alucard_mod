@@ -3,6 +3,7 @@ package alucardmod.cards;
 import alucardmod.character.AlucardCharacter;
 import alucardmod.util.CardStats;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.cards.green.BladeDance;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -24,14 +25,26 @@ public abstract class ActionCard extends BaseCard {
 
     abstract CardTags[] getCardTags();
 
-    abstract int getDamage();
-    abstract int getUpgradedDamage();
+    protected int getDamage() {
+        return 0;
+    }
+    protected int getUpgradedDamage() {
+        return 0;
+    }
 
-    abstract int getBlock();
-    abstract int getUpgradedBlock();
+    protected int getBlock() {
+        return 0;
+    }
+    protected int getUpgradedBlock() {
+        return 0;
+    }
 
-    abstract int getMagic();
-    abstract int getUpgradedMagic();
+    protected int getMagic() {
+        return 0;
+    }
+    protected int getUpgradedMagic() {
+        return 0;
+    }
 
     @Override
     public void use(AbstractPlayer abstractPlayer, AbstractMonster abstractMonster) {
