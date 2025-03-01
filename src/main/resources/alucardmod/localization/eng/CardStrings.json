@@ -27,10 +27,20 @@
   },
   "${modID}:PleaseThisIsNotABarFight": {
     "NAME": "Please, This Isn't A Bar Fight",
-    "DESCRIPTION": "Apply !M! Weak. NL Put a *Or Maybe It Is...* into your discard pile. NL Exhaust."
+    "DESCRIPTION": "Apply !M! Weak. NL Put a *Or Maybe It Is...* into your discard pile. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Apply !M! Weak. NL Put a *Or Maybe It Is...+* into your discard pile. NL Exhaust."
   },
   "${modID}:OrMaybeItIs": {
     "NAME": "Or Maybe It Is...",
-    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Vulnerable. NL Put a *Please, This Isn't A Bar Fight* into your discard pile. NL Exhaust."
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Vulnerable. NL Put a *Please, This Isn't A Bar Fight* into your discard pile. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL Apply !M! Vulnerable. NL Put a *Please, This Isn't A Bar Fight+* into your discard pile. NL Exhaust."
+  },
+  "${modID}:AlucardsShield": {
+    "NAME": "Alucard's Shield",
+    "DESCRIPTION": "Gain !M! Dexterity."
+  },
+  "${modID}:ICanDoSomethingForYou": {
+    "NAME": "I'm Sure I Can Do Something For You",
+    "DESCRIPTION": "Draw !M! cards."
   }
 }
