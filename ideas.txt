@@ -44,7 +44,7 @@ Attacks (28):
         1. Strike
         2. Bite
     Common (11):
-        1.
+        1. Shield Bash
         2.
         3.
         4.
@@ -78,9 +78,14 @@ Skills (35):
         1. Defend
         2. Outspeed
     Common (8):
-        1. "Alucard's Shield" which gives block and maybe a dexterity buff
-        2. "Please, this isn't a bar fight" which applies "Weak" to an enemy
-        3. "I'm sure I can do something for you" draw 2 cards
+        1. Is This A Bar Fight?
+        2. I Can Help Out
+        3.
+        4.
+        5.
+        6.
+        7.
+        8.
     Uncommon (17):
         1.
         2.
@@ -111,7 +116,7 @@ Skills (35):
 
 Powers (12):
     Uncommon (7):
-        1.
+        1. Alucard's Shield
         2.
         3.
         4.

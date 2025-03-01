@@ -49,16 +49,6 @@ public class Bite extends ActionCard {
     }
 
     @Override
-    protected int getBlock() {
-        return 0;
-    }
-
-    @Override
-    protected int getUpgradedBlock() {
-        return 0;
-    }
-
-    @Override
     protected int getMagic() {
         return 2;
     }

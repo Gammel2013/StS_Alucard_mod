@@ -5,22 +5,22 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
+import static alucardmod.util.ActionGenerator.dealDamageAction;
 import static alucardmod.util.ActionGenerator.gainBlockAction;
-import static alucardmod.util.ActionGenerator.gainBlurAction;
 
-public class Outspeed extends ActionCard {
+public class ShieldBash extends ActionCard {
 
-    public static final String ID = makeID(Outspeed.class.getSimpleName());
+    public static final String ID = makeID(ShieldBash.class.getSimpleName());
 
     private static final CardStats info = new CardStats(
             COLOR,
-            CardType.SKILL,
-            CardRarity.BASIC,
-            CardTarget.SELF,
-            2
+            CardType.ATTACK,
+            CardRarity.COMMON,
+            CardTarget.ENEMY,
+            1
     );
 
-    public Outspeed() {
+    public ShieldBash() {
         super(ID, info);
     }
 
@@ -33,24 +33,29 @@ public class Outspeed extends ActionCard {
 
     @Override
     protected int getBlock() {
-        return 7;
-    }
-
-    @Override
-    protected int getUpgradedBlock() {
         return 5;
     }
 
     @Override
-    protected int getMagic() {
-        return 1;
+    protected int getUpgradedBlock() {
+        return 3;
+    }
+
+    @Override
+    protected int getDamage() {
+        return 6;
+    }
+
+    @Override
+    protected int getUpgradedDamage() {
+        return 3;
     }
 
     @Override
     AbstractGameAction[] getGameActions(AbstractPlayer abstractPlayer, AbstractMonster abstractMonster) {
         return new AbstractGameAction[] {
                 gainBlockAction(abstractPlayer, block),
-                gainBlurAction(abstractPlayer, magicNumber)
+                dealDamageAction(abstractPlayer, abstractMonster, damage)
         };
     }
 }

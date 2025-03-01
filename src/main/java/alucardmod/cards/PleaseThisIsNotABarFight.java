@@ -8,7 +8,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.WeakPower;
 
-import static alucardmod.util.ActionGenerator.dealDamageAction;
 import static alucardmod.util.ActionGenerator.gainPowerAction;
 
 public class PleaseThisIsNotABarFight extends ActionCard {
@@ -26,7 +25,15 @@ public class PleaseThisIsNotABarFight extends ActionCard {
     public PleaseThisIsNotABarFight() {
         super(ID, info);
         this.setExhaust(true);
-        this.cardsToPreview = new OrMaybeItIs();
+        this.cardsToPreview = new OrMaybeItIs(false);
+    }
+
+    public PleaseThisIsNotABarFight(boolean showPreview) {
+        super(ID, info);
+        this.setExhaust(true);
+        if (showPreview) {
+            this.cardsToPreview = new OrMaybeItIs(false);
+        }
     }
 
     @Override

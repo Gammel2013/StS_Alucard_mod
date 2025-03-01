@@ -3,7 +3,6 @@ package alucardmod.cards;
 import alucardmod.character.AlucardCharacter;
 import alucardmod.util.CardStats;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.cards.green.BladeDance;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 

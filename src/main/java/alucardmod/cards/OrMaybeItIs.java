@@ -6,9 +6,7 @@ import com.megacrit.cardcrawl.actions.common.MakeTempCardInDiscardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
-import com.megacrit.cardcrawl.powers.WeakPower;
 
 import static alucardmod.util.ActionGenerator.dealDamageAction;
 import static alucardmod.util.ActionGenerator.gainPowerAction;
@@ -28,7 +26,15 @@ public class OrMaybeItIs extends ActionCard {
     public OrMaybeItIs() {
         super(ID, info);
         this.setExhaust(true);
-        this.cardsToPreview = new PleaseThisIsNotABarFight();
+        this.cardsToPreview = new PleaseThisIsNotABarFight(false);
+    }
+
+    public OrMaybeItIs(boolean showPreview) {
+        super(ID, info);
+        this.setExhaust(true);
+        if (showPreview) {
+            this.cardsToPreview = new PleaseThisIsNotABarFight(false);
+        }
     }
 
     @Override

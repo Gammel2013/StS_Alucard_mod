@@ -1,11 +1,11 @@
 package alucardmod.cards;
 
-import basemod.BaseMod;
-import basemod.abstracts.CustomCard;
-import basemod.abstracts.DynamicVariable;
 import alucardmod.AlucardMod;
 import alucardmod.util.CardStats;
 import alucardmod.util.TriFunction;
+import basemod.BaseMod;
+import basemod.abstracts.CustomCard;
+import basemod.abstracts.DynamicVariable;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;

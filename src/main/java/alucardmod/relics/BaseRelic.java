@@ -1,10 +1,10 @@
 package alucardmod.relics;
 
 import alucardmod.AlucardMod;
-import basemod.abstracts.CustomRelic;
-import basemod.helpers.RelicType;
 import alucardmod.util.GeneralUtils;
 import alucardmod.util.TextureLoader;
+import basemod.abstracts.CustomRelic;
+import basemod.helpers.RelicType;
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;

@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DexterityPower;
 
-import static alucardmod.util.ActionGenerator.gainBlockAction;
 import static alucardmod.util.ActionGenerator.gainPowerAction;
 
 public class AlucardsShield extends ActionCard {

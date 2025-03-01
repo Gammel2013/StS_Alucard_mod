@@ -1,14 +1,14 @@
 package alucardmod;
 
 import alucardmod.cards.BaseCard;
-import alucardmod.relics.BaseRelic;
-import basemod.AutoAdd;
-import basemod.BaseMod;
-import basemod.interfaces.*;
 import alucardmod.character.AlucardCharacter;
+import alucardmod.relics.BaseRelic;
 import alucardmod.util.GeneralUtils;
 import alucardmod.util.KeywordInfo;
 import alucardmod.util.TextureLoader;
+import basemod.AutoAdd;
+import basemod.BaseMod;
+import basemod.interfaces.*;
 import com.badlogic.gdx.Files;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.backends.lwjgl.LwjglFileHandle;
