@@ -33,7 +33,7 @@ public class Outspeed extends ActionCard {
 
     @Override
     protected int getBlock() {
-        return 7;
+        return 8;
     }
 
     @Override
