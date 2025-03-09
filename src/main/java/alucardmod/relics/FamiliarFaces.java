@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.relics.BurningBlood;
 
 public class FamiliarFaces extends BaseRelic {
 
@@ -26,13 +27,10 @@ public class FamiliarFaces extends BaseRelic {
         show();
 
         AbstractPlayer player = AbstractDungeon.player;
-        addToBot(
-                new HealAction(
-                        player,
-                        player,
-                        HEAL
-                )
-        );
+
+        if (player.currentHealth > 0) {
+            player.heal(HEAL);
+        }
     }
 
     public void atBattleStart() {
