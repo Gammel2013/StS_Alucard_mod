@@ -1,6 +1,5 @@
 package alucardmod.cards;
 
-import alucardmod.util.CardStats;
 import alucardmod.util.FullCardStats;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;

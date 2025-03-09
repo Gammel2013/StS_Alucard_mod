@@ -1,6 +1,5 @@
 package alucardmod.cards;
 
-import alucardmod.util.CardStats;
 import alucardmod.util.FullCardStats;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
@@ -9,8 +8,6 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.status.Burn;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-
-import static alucardmod.util.ActionGenerator.dealDamageAction;
 
 public class DarkInferno extends ActionCard {
     // makeID adds the mod ID, so the final ID will be something like "modID:MyCard"

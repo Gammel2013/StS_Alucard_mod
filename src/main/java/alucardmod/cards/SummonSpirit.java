@@ -8,7 +8,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.FrailPower;
 
 import static alucardmod.util.ActionGenerator.dealDamageAction;
-import static alucardmod.util.ActionGenerator.gainBlockAction;
 
 public class SummonSpirit extends ActionCard {
 

@@ -2,10 +2,8 @@ package alucardmod.relics;
 
 import alucardmod.character.AlucardCharacter;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
-import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.relics.BurningBlood;
 
 public class FamiliarFaces extends BaseRelic {
 
