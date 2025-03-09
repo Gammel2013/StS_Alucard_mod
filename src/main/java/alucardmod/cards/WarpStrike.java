@@ -1,46 +1,51 @@
 package alucardmod.cards;
 
-import alucardmod.util.CardStats;
 import alucardmod.util.FullCardStats;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.cards.red.Bash;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
+import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.VulnerablePower;
+
+import java.util.ArrayList;
 
 import static alucardmod.util.ActionGenerator.dealDamageAction;
-import static alucardmod.util.ActionGenerator.gainPowerAction;
 
-public class Bite extends ActionCard {
+public class WarpStrike extends ActionCard {
 
-    public static final String ID = makeID(Bite.class.getSimpleName());
+    public static final String ID = makeID(WarpStrike.class.getSimpleName());
 
     private static final FullCardStats info = new FullCardStats(
             CardType.ATTACK,
-            CardRarity.BASIC,
+            CardRarity.UNCOMMON,
             CardTarget.ENEMY,
             2
     )
-            .setDamage(10, 4)
-            .setMagic(2, 1);
+            .setDamage(12, 4)
+            .setMagic(1, 1);
 
-    public Bite() {
+    public WarpStrike() {
         super(ID, info);
     }
 
     @Override
     AbstractGameAction[] getGameActions(AbstractPlayer abstractPlayer, AbstractMonster abstractMonster) {
         return new AbstractGameAction[] {
+                new ApplyPowerAction(
+                        abstractMonster,
+                        abstractPlayer,
+                        new VulnerablePower(
+                                abstractMonster,
+                                magicNumber,
+                                false
+                        )
+                ),
                 dealDamageAction(
                         abstractPlayer,
                         abstractMonster,
                         damage
-                ),
-                gainPowerAction(
-                        abstractPlayer,
-                        new DrawCardNextTurnPower(
-                                abstractPlayer,
-                                magicNumber
-                        )
                 )
         };
     }

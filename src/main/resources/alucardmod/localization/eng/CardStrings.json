@@ -46,5 +46,34 @@
   "${modID}:ShieldBash": {
     "NAME": "Shield Bash",
     "DESCRIPTION": "Deal !D! damage. NL Gain !B! Block."
+  },
+  "${modID}:HeadfirstForHalos": {
+    "NAME": "Headfirst For Halos",
+    "DESCRIPTION": "Lose !${modID}:self_damage! HP. NL Gain !M! Intangible."
+  },
+  "${modID}:Gun": {
+    "NAME": "Gun.",
+    "DESCRIPTION": "Deal !D! damage X times."
+  },
+  "${modID}:Cleave": {
+    "NAME": "Cleave",
+    "DESCRIPTION": "Deal !D! damage to all enemies."
+  },
+  "${modID}:DarkInferno": {
+    "NAME": "Dark Inferno",
+    "DESCRIPTION": "Deal !D! damage to all enemies. NL Add !M! Burn to your discard pile."
+  },
+  "${modID}:CloudOfBats": {
+    "NAME": "Cloud Of Bats",
+    "DESCRIPTION": "Gain !M! Intangible. NL Retain. Exhaust.",
+    "UPGRADE_DESCRIPTION": "Gain !M! Intangible. NL Retain."
+  },
+  "${modID}:WarpStrike": {
+    "NAME": "Warp-Strike",
+    "DESCRIPTION": "Apply !M! Vulnerable. NL Deal !D! damage."
+  },
+  "${modID}:SummonSpirit": {
+    "NAME": "SummonSpirit",
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Frail."
   }
 }

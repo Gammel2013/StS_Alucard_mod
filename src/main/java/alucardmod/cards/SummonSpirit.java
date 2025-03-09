@@ -1,45 +1,43 @@
 package alucardmod.cards;
 
-import alucardmod.util.CardStats;
 import alucardmod.util.FullCardStats;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
+import com.megacrit.cardcrawl.powers.FrailPower;
 
 import static alucardmod.util.ActionGenerator.dealDamageAction;
-import static alucardmod.util.ActionGenerator.gainPowerAction;
+import static alucardmod.util.ActionGenerator.gainBlockAction;
 
-public class Bite extends ActionCard {
+public class SummonSpirit extends ActionCard {
 
-    public static final String ID = makeID(Bite.class.getSimpleName());
+    public static final String ID = makeID(SummonSpirit.class.getSimpleName());
 
     private static final FullCardStats info = new FullCardStats(
             CardType.ATTACK,
-            CardRarity.BASIC,
+            CardRarity.COMMON,
             CardTarget.ENEMY,
-            2
+            1
     )
-            .setDamage(10, 4)
+            .setDamage(7, 4)
             .setMagic(2, 1);
 
-    public Bite() {
+    public SummonSpirit() {
         super(ID, info);
     }
 
     @Override
     AbstractGameAction[] getGameActions(AbstractPlayer abstractPlayer, AbstractMonster abstractMonster) {
         return new AbstractGameAction[] {
-                dealDamageAction(
-                        abstractPlayer,
+                dealDamageAction(abstractPlayer, abstractMonster, damage),
+                new ApplyPowerAction(
                         abstractMonster,
-                        damage
-                ),
-                gainPowerAction(
                         abstractPlayer,
-                        new DrawCardNextTurnPower(
-                                abstractPlayer,
-                                magicNumber
+                        new FrailPower(
+                                abstractMonster,
+                                magicNumber,
+                                false
                         )
                 )
         };

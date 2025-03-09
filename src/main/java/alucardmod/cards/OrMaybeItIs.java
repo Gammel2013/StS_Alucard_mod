@@ -1,6 +1,7 @@
 package alucardmod.cards;
 
 import alucardmod.util.CardStats;
+import alucardmod.util.FullCardStats;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDiscardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -12,16 +13,18 @@ import static alucardmod.util.ActionGenerator.dealDamageAction;
 import static alucardmod.util.ActionGenerator.gainPowerAction;
 
 public class OrMaybeItIs extends ActionCard {
-    // makeID adds the mod ID, so the final ID will be something like "modID:MyCard"
+
     public static final String ID = makeID(OrMaybeItIs.class.getSimpleName());
 
-    private static final CardStats info = new CardStats(
+    private static final FullCardStats info = new FullCardStats(
             CardColor.COLORLESS,
             CardType.ATTACK,
             CardRarity.SPECIAL,
             CardTarget.ENEMY,
             1
-    );
+    )
+            .setDamage(4, 2)
+            .setMagic(1, 1);
 
     public OrMaybeItIs() {
         super(ID, info);
@@ -41,33 +44,11 @@ public class OrMaybeItIs extends ActionCard {
     public void upgrade() {
         if (!upgraded) {
             super.upgrade();
-            this.cardsToPreview.upgrade();
+
+            if (this.cardsToPreview != null) {
+                this.cardsToPreview.upgrade();
+            }
         }
-    }
-
-    @Override
-    CardTags[] getCardTags() {
-        return new CardTags[] {};
-    }
-
-    @Override
-    protected int getDamage() {
-        return 4;
-    }
-
-    @Override
-    protected int getUpgradedDamage() {
-        return 2;
-    }
-
-    @Override
-    protected int getMagic() {
-        return 1;
-    }
-
-    @Override
-    protected int getUpgradedMagic() {
-        return 1;
     }
 
     @Override

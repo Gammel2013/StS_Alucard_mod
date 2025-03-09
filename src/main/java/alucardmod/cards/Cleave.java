@@ -3,38 +3,37 @@ package alucardmod.cards;
 import alucardmod.util.CardStats;
 import alucardmod.util.FullCardStats;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static alucardmod.util.ActionGenerator.dealDamageAction;
 
-public class Strike extends ActionCard {
-
-    public static final String ID = makeID(Strike.class.getSimpleName());
+public class Cleave extends ActionCard {
+    // makeID adds the mod ID, so the final ID will be something like "modID:MyCard"
+    public static final String ID = makeID(Cleave.class.getSimpleName());
 
     private static final FullCardStats info = new FullCardStats(
             CardType.ATTACK,
-            CardRarity.BASIC,
-            CardTarget.ENEMY,
+            CardRarity.UNCOMMON,
+            CardTarget.ALL_ENEMY,
             1
     )
-            .setDamage(6, 3)
-            .setTags(
-                    CardTags.STARTER_STRIKE,
-                    CardTags.STRIKE
-            );
+            .setDamage(5, 3);
 
-    public Strike() {
+    public Cleave() {
         super(ID, info);
     }
 
     @Override
     AbstractGameAction[] getGameActions(AbstractPlayer abstractPlayer, AbstractMonster abstractMonster) {
         return new AbstractGameAction[] {
-                dealDamageAction(
+                new DamageAllEnemiesAction(
                         abstractPlayer,
-                        abstractMonster,
-                        damage
+                        damage,
+                        DamageInfo.DamageType.NORMAL,
+                        AbstractGameAction.AttackEffect.SLASH_HORIZONTAL
                 )
         };
     }

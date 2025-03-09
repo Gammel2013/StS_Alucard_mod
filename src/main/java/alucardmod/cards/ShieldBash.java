@@ -1,6 +1,7 @@
 package alucardmod.cards;
 
 import alucardmod.util.CardStats;
+import alucardmod.util.FullCardStats;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -12,43 +13,17 @@ public class ShieldBash extends ActionCard {
 
     public static final String ID = makeID(ShieldBash.class.getSimpleName());
 
-    private static final CardStats info = new CardStats(
-            COLOR,
+    private static final FullCardStats info = new FullCardStats(
             CardType.ATTACK,
             CardRarity.COMMON,
             CardTarget.ENEMY,
             1
-    );
+    )
+            .setBlock(5, 3)
+            .setDamage(6, 3);
 
     public ShieldBash() {
         super(ID, info);
-    }
-
-    @Override
-    CardTags[] getCardTags() {
-        return new CardTags[]{
-
-        };
-    }
-
-    @Override
-    protected int getBlock() {
-        return 5;
-    }
-
-    @Override
-    protected int getUpgradedBlock() {
-        return 3;
-    }
-
-    @Override
-    protected int getDamage() {
-        return 6;
-    }
-
-    @Override
-    protected int getUpgradedDamage() {
-        return 3;
     }
 
     @Override

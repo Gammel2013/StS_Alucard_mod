@@ -1,6 +1,7 @@
 package alucardmod.cards;
 
 import alucardmod.util.CardStats;
+import alucardmod.util.FullCardStats;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -10,32 +11,17 @@ public class ICanDoSomethingForYou extends ActionCard {
 
     public static final String ID = makeID(ICanDoSomethingForYou.class.getSimpleName());
 
-    private static final CardStats info = new CardStats(
-            COLOR,
+    private static final FullCardStats info = new FullCardStats(
             CardType.SKILL,
             CardRarity.COMMON,
             CardTarget.SELF,
             0
-    );
+    )
+            .setMagic(2, 1);
 
     public ICanDoSomethingForYou() {
         super(ID, info);
         this.setExhaust(true);
-    }
-
-    @Override
-    CardTags[] getCardTags() {
-        return new CardTags[]{};
-    }
-
-    @Override
-    protected int getMagic() {
-        return 2;
-    }
-
-    @Override
-    protected int getUpgradedMagic() {
-        return 1;
     }
 
     @Override
