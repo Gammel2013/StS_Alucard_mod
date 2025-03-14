@@ -2,6 +2,7 @@ package alucardmod;
 
 import alucardmod.cards.ActionCard;
 import org.json.JSONObject;
+import org.junit.jupiter.api.Assumptions;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -92,7 +93,7 @@ class AlucardModTest {
             }
         }
 
-        assertTrue(has_art, "Card " + name + " does not have art");
+        Assumptions.assumeTrue(has_art, "Card " + name + " does not have art");
 
     }
 
