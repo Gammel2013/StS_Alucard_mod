@@ -41,7 +41,7 @@
   },
   "${modID}:ICanDoSomethingForYou": {
     "NAME": "I Can Help Out",
-    "DESCRIPTION": "Draw !M! cards."
+    "DESCRIPTION": "Draw !M! cards. NL Exhaust."
   },
   "${modID}:ShieldBash": {
     "NAME": "Shield Bash",
@@ -73,7 +73,7 @@
     "DESCRIPTION": "Apply !M! Vulnerable. NL Deal !D! damage."
   },
   "${modID}:SummonSpirit": {
-    "NAME": "SummonSpirit",
+    "NAME": "Summon Spirit",
     "DESCRIPTION": "Deal !D! damage. NL Apply !M! Frail."
   }
 }
