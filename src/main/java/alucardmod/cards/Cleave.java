@@ -17,7 +17,7 @@ public class Cleave extends ActionCard {
             CardTarget.ALL_ENEMY,
             1
     )
-            .setDamage(5, 3);
+            .setDamage(8, 4);
 
     public Cleave() {
         super(ID, info);
